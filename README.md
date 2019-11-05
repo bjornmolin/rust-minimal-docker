@@ -20,7 +20,7 @@ Clone this repo and play around with docker.
 
 ```
 docker build -t mygreatapp .
-docker run mygreatapp:latest
+docker run --init mygreatapp:latest
 ```
 will build the docker image and during run output
 ```
@@ -31,7 +31,7 @@ will build the docker image and during run output
 
 Config the app with an environment variable 
 ```
-docker run -e "MY_GREAT_CONFIG=hello" mygreatapp:latest
+docker run --init -e "MY_GREAT_CONFIG=hello" mygreatapp:latest
 [2019-03-19T18:10:01Z INFO  mygreatapp] An info Hello, world! mygreatapp hello
 [2019-03-19T18:10:01Z WARN  mygreatapp] A warn Hello, world! mygreatapp hello
 [2019-03-19T18:10:01Z ERROR mygreatapp] An error Hello, world! mygreatapp hello
@@ -39,7 +39,7 @@ docker run -e "MY_GREAT_CONFIG=hello" mygreatapp:latest
 
 Configure the log level
 ```
-docker run -e "MY_GREAT_CONFIG=hello" -e "RUST_LOG=trace" mygreatapp:latest
+docker run --init -e "MY_GREAT_CONFIG=hello" -e "RUST_LOG=trace" mygreatapp:latest
 [2019-03-19T18:10:17Z TRACE mygreatapp] A trace Hello, world! mygreatapp hello
 [2019-03-19T18:10:17Z DEBUG mygreatapp] A debug Hello, world! mygreatapp hello
 [2019-03-19T18:10:17Z INFO  mygreatapp] An info Hello, world! mygreatapp hello
