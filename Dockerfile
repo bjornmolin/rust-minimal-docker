@@ -15,8 +15,7 @@ COPY Cargo.toml .
 RUN mkdir src \
     && echo "fn main() {print!(\"Dummy main\");} // dummy file" > src/main.rs
 RUN set -x && cargo build --target x86_64-unknown-linux-musl --release
-# TODO if the BINARY_NAME contains - it vill have deps where - is replaced with _
-RUN set -x && rm target/x86_64-unknown-linux-musl/release/deps/$BINARY_NAME*
+RUN ["/bin/bash", "-c", "set -x && rm target/x86_64-unknown-linux-musl/release/deps/${BINARY_NAME//-/_}*"]
 
 # Now add the rest of the project and build the real main
 COPY src ./src
